@@ -1,19 +1,42 @@
 import os
-from flask import Flask, render_template, request, jsonify
+import sqlite3
+from datetime import datetime
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
+app.secret_key = os.environ.get("SECRET_KEY", "sudais-cyber-portfolio-secret-2026")
+
+# Admin credentials (configurable via environment variable or default)
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "sudais2026")
+
+# Database path
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "messages.db")
+
+
+def init_db():
+    """Initialize the SQLite database for contact messages."""
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS messages (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    message TEXT NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+            conn.commit()
+    except Exception as e:
+        print(f"Database initialization error: {e}")
+
+
+# Initialize DB on startup
+init_db()
+
 
 # ──────────────────────────────────────────────
-# DATABASE & EMAIL CONFIGURATION (Optional Env Vars)
-# ──────────────────────────────────────────────
-# To enable Supabase/PostgreSQL or transactional email via Resend/SendGrid,
-# set these environment variables in Vercel or your .env file:
-# RESEND_API_KEY = os.getenv("RESEND_API_KEY")
-# SUPABASE_URL   = os.getenv("SUPABASE_URL")
-# SUPABASE_KEY   = os.getenv("SUPABASE_KEY")
-
-# ──────────────────────────────────────────────
-# ROUTES
+# PUBLIC ROUTES
 # ──────────────────────────────────────────────
 
 @app.route("/")
@@ -24,7 +47,7 @@ def index():
 
 @app.route("/contact", methods=["POST"])
 def contact():
-    """Handle contact form submissions."""
+    """Handle contact form submissions and persist them to SQLite."""
     try:
         data = request.get_json(force=True, silent=True) or {}
 
@@ -38,26 +61,18 @@ def contact():
                 "error": "Please provide your name, email, and message."
             }), 400
 
+        # Save to SQLite database
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO messages (name, email, message, created_at) VALUES (?, ?, ?, ?)",
+                (name, email, message, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            )
+            conn.commit()
+
         # Log to server console
-        print(f"\n[PORTFOLIO CONTACT] From: {name} <{email}>")
+        print(f"\n[NEW PORTFOLIO MESSAGE] From: {name} <{email}>")
         print(f"Message: {message}\n")
-
-        # ── Optional: Resend API integration ──
-        # if resend_key:
-        #     import resend
-        #     resend.api_key = resend_key
-        #     resend.Emails.send({
-        #         "from": "portfolio@sudaisahmad.dev",
-        #         "to": "sudaisbacha524@gmail.com",
-        #         "subject": f"New Portfolio Message from {name}",
-        #         "html": f"<p><strong>From:</strong> {name} ({email})</p><p>{message}</p>"
-        #     })
-
-        # ── Optional: SQLite backup logging ──
-        # import sqlite3
-        # with sqlite3.connect("messages.db") as conn:
-        #     conn.execute("CREATE TABLE IF NOT EXISTS messages (name TEXT, email TEXT, message TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)")
-        #     conn.execute("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)", (name, email, message))
 
         return jsonify({
             "success": True,
@@ -70,6 +85,71 @@ def contact():
             "success": False,
             "error": "Internal server error. Please email directly at sudaisbacha524@gmail.com"
         }), 500
+
+
+# ──────────────────────────────────────────────
+# ADMIN DASHBOARD ROUTES
+# ──────────────────────────────────────────────
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Admin login page to access dashboard."""
+    if session.get("is_admin"):
+        return redirect(url_for("dashboard"))
+
+    error = None
+    if request.method == "POST":
+        password = request.form.get("password", "").strip()
+        if password == ADMIN_PASSWORD:
+            session["is_admin"] = True
+            return redirect(url_for("dashboard"))
+        else:
+            error = "Invalid admin password. Please try again."
+
+    return render_template("login.html", error=error)
+
+
+@app.route("/dashboard")
+@app.route("/admin")
+def dashboard():
+    """Protected admin dashboard to view incoming contact messages."""
+    if not session.get("is_admin"):
+        return redirect(url_for("login"))
+
+    messages = []
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM messages ORDER BY id DESC")
+            messages = [dict(row) for row in cursor.fetchall()]
+    except Exception as e:
+        print(f"Error loading messages: {e}")
+
+    return render_template("dashboard.html", messages=messages)
+
+
+@app.route("/dashboard/delete/<int:msg_id>", methods=["POST"])
+def delete_message(msg_id):
+    """Delete a contact message by ID."""
+    if not session.get("is_admin"):
+        return redirect(url_for("login"))
+
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            conn.execute("DELETE FROM messages WHERE id = ?", (msg_id,))
+            conn.commit()
+    except Exception as e:
+        print(f"Error deleting message: {e}")
+
+    return redirect(url_for("dashboard"))
+
+
+@app.route("/logout")
+def logout():
+    """Log out from admin session."""
+    session.pop("is_admin", None)
+    return redirect(url_for("login"))
 
 
 # ──────────────────────────────────────────────
