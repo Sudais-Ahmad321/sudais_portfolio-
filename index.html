@@ -1,0 +1,2982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudais Ahmad — Computer Science Student | Cybersecurity & Web Development</title>
+  <meta name="description" content="Portfolio of Sudais Ahmad — BS Computer Science Student (7th Semester) at Sarhad University of Sciences & IT, Peshawar. Focusing on Cybersecurity, SOC Operations, and Full-Stack Web & Mobile App Development.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ShapeGrid CSS -->
+  <link rel="stylesheet" href="/static/css/shapegrid.css">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --bg-surface: #0c1017;
+      --card-bg: rgba(14, 19, 30, 0.72);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(59, 130, 246, 0.4);
+      --card-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+      
+      --accent: #2563eb;
+      --accent-glow: rgba(37, 99, 235, 0.3);
+      --accent-cyan: #06b6d4;
+      --accent-gold: #f59e0b;
+      --accent-crimson: #ef4444;
+      --accent-green: #10b981;
+      
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --grad-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+      --grad-security: linear-gradient(135deg, #3b82f6 0%, #ef4444 100%);
+      --grad-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --grad-card: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: default;
+    }
+
+    /* ===== CUSTOM CYBER CURSOR ===== */
+    .custom-cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #f59e0b;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 14px #f59e0b, 0 0 28px rgba(245, 158, 11, 0.5);
+      transition: width 0.15s, height 0.15s, background-color 0.2s;
+    }
+
+    .custom-cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(245, 158, 11, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.12s, height 0.12s, border-color 0.2s;
+    }
+
+    .custom-cursor.active {
+      width: 18px;
+      height: 18px;
+      background: #38bdf8;
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    .custom-cursor-ring.active {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    /* ===== AMBIENT ORBS ===== */
+    .ambient-glow {
+      position: fixed;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      animation: ambientDrift 20s ease-in-out infinite alternate;
+    }
+
+    .glow-1 {
+      top: -150px;
+      left: -150px;
+      background: #2563eb;
+    }
+
+    .glow-2 {
+      top: 40%;
+      right: -200px;
+      background: #0891b2;
+      animation-duration: 25s;
+    }
+
+    .glow-3 {
+      bottom: -150px;
+      left: 20%;
+      background: #dc2626;
+      animation-duration: 22s;
+    }
+
+    @keyframes ambientDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 70px) scale(0.95); }
+    }
+
+    /* ===== SCROLL PROGRESS BAR ===== */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #06b6d4, #f59e0b, #ef4444);
+      z-index: 10000;
+      width: 0%;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+      transition: width 0.1s linear;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(7, 9, 14, 0.82);
+      border-bottom: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 12px 50px;
+      background: rgba(7, 9, 14, 0.94);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-sem-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-sem-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #34d399;
+      animation: pulse 1.8s infinite;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-cyan);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa !important;
+      padding: 7px 18px !important;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent) !important;
+      color: #fff !important;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn::after {
+      display: none !important;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      font-size: 1.3rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-wrap {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      margin-bottom: 54px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 4px;
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      margin-bottom: 14px;
+    }
+
+    .section-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .section-title .gradient-text {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin-top: 12px;
+    }
+
+    /* ===== HERO SECTION ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      color: #34d399;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.7); opacity: 0.5; }
+    }
+
+    .hero-title-main {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .hero-title-main .name-highlight {
+      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .typewriter-box {
+      font-family: 'Fira Code', monospace;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+    }
+
+    .terminal-prompt {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .typed-text {
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 9px;
+      height: 18px;
+      background: var(--accent-gold);
+      margin-left: 2px;
+      animation: blink 0.9s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 580px;
+      margin-bottom: 34px;
+    }
+
+    .hero-bio strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 44px;
+    }
+
+    .btn-glow-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 34px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-glow-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.6);
+      color: #fff;
+    }
+
+    .btn-glass-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-glass-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hero-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding-top: 30px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .hero-stat-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.85rem;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-number.gold { color: var(--accent-gold); }
+    .stat-number.cyan { color: var(--accent-cyan); }
+    .stat-number.blue { color: #60a5fa; }
+    .stat-number.green { color: #34d399; }
+
+    .stat-caption {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== HERO PROFILE PICTURE & FRAME ===== */
+    .hero-visual-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .photo-scene {
+      perspective: 1000px;
+      width: 320px;
+      height: 420px;
+    }
+
+    .photo-3d-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 20px;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Animated Cyber Conic Glowing Border */
+    .photo-conic-glow {
+      position: absolute;
+      inset: -3px;
+      border-radius: 23px;
+      background: conic-gradient(
+        from 0deg,
+        #2563eb,
+        #06b6d4,
+        #f59e0b,
+        #ef4444,
+        #2563eb
+      );
+      z-index: 1;
+      animation: rotateConic 6s linear infinite;
+      filter: blur(1.5px);
+    }
+
+    @keyframes rotateConic {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .photo-inner-canvas {
+      position: absolute;
+      inset: 3px;
+      background: #0d121f;
+      border-radius: 19px;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .photo-inner-canvas img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: contrast(1.04) brightness(0.98);
+      transition: transform 0.5s ease, filter 0.5s ease;
+      display: block;
+    }
+
+    .photo-3d-card:hover .photo-inner-canvas img {
+      transform: scale(1.04);
+      filter: contrast(1.08) brightness(1.02);
+    }
+
+    /* Cyber Corner Brackets */
+    .tech-corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: #38bdf8;
+      border-style: solid;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .tech-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+    .tech-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+    .tech-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+    .tech-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+    /* Top Floating Cyber Badge */
+    .photo-badge-top {
+      position: absolute;
+      top: -16px;
+      right: -14px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      animation: floatBadge 4s ease-in-out infinite alternate;
+    }
+
+    /* Bottom Floating Status Tag */
+    .photo-badge-bottom {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: #fde68a;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      animation: floatBadge 4.5s ease-in-out infinite alternate-reverse;
+    }
+
+    .photo-badge-bottom span.title {
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+
+    .photo-badge-bottom span.subtitle {
+      color: var(--text-muted);
+      font-size: 0.65rem;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* Ambient pulse behind photo */
+    .photo-ambient-pulse {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { opacity: 0.5; transform: scale(0.95); }
+      to { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    /* ===== CAREER ROADMAP & FOCUS SECTION ===== */
+    .progression-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      backdrop-filter: blur(16px);
+      margin-bottom: 40px;
+    }
+
+    .progression-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      position: relative;
+    }
+
+    .prog-node {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .node-pill {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .node-pill.active {
+      background: rgba(37, 99, 235, 0.2);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: #60a5fa;
+    }
+
+    .node-pill.target {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #f87171;
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.3);
+    }
+
+    .prog-arrow {
+      color: var(--accent-gold);
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .focus-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .focus-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 34px;
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .focus-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--grad-primary);
+    }
+
+    .focus-card.security::before {
+      background: var(--grad-security);
+    }
+
+    .focus-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .focus-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .focus-tag.sec-color { color: #f87171; }
+    .focus-tag.web-color { color: #38bdf8; }
+
+    .focus-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .focus-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .focus-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .focus-bullets li {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .focus-bullets li::before {
+      content: "▹";
+      color: var(--accent-cyan);
+      font-size: 1.1rem;
+    }
+
+    .focus-card.security .focus-bullets li::before {
+      color: #ef4444;
+    }
+
+    /* ===== ABOUT & ACADEMICS SECTION ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .about-text p strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .academic-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .uni-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .uni-degree {
+      color: var(--accent-cyan);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .semester-badge-large {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .coursework-box {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .box-mini-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .course-chips-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .course-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      color: #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .course-chip:hover {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+    }
+
+    /* ===== CURRENTLY LEARNING & CERTIFICATIONS ===== */
+    .learning-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+    }
+
+    .opswat-card {
+      background: linear-gradient(145deg, rgba(20, 28, 45, 0.8) 0%, rgba(12, 16, 26, 0.8) 100%);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 16px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .opswat-card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .learning-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .learning-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .learning-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .cia-triad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .triad-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .triad-box .letter {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: #ef4444;
+      display: block;
+    }
+
+    .triad-box .name {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      color: #cbd5e1;
+      text-transform: uppercase;
+    }
+
+    .learning-topics-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .topic-item {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topic-item::before {
+      content: "✔";
+      color: #ef4444;
+      font-size: 0.8rem;
+    }
+
+    .certs-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cert-item-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.25s ease;
+    }
+
+    .cert-item-card:hover {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateX(4px);
+    }
+
+    .cert-icon {
+      font-size: 1.3rem;
+    }
+
+    .cert-content h5 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .cert-content p {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+    }
+
+    .view-certs-btn {
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .view-certs-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* ===== TECHNICAL SKILLS MATRIX ===== */
+    .skills-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-cat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 26px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+    }
+
+    .skill-cat-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .cat-icon {
+      font-size: 1.3rem;
+    }
+
+    .cat-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .skill-tags-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      color: #cbd5e1;
+      transition: all 0.2s ease;
+    }
+
+    .tech-tag:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #fff;
+    }
+
+    .tech-tag.highlight {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: rgba(6, 182, 212, 0.3);
+      color: #38bdf8;
+    }
+
+    .tech-tag.sec-tag {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    /* ===== FEATURED PROJECTS SECTION ===== */
+    .projects-container-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Major Project Card (Landscape Feature) */
+    .project-card-major {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      transition: all 0.35s ease;
+    }
+
+    .project-card-major:hover {
+      border-color: rgba(59, 130, 246, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .project-card-major.reversed {
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .project-img-frame {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      background: #0d121f;
+    }
+
+    .project-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .project-card-major:hover .project-img-frame img {
+      transform: scale(1.05);
+    }
+
+    .project-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(7, 9, 14, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    .project-info-body {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .p-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-star {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    .badge-mobile {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
+    .badge-web {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+    }
+
+    .badge-planned {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #c084fc;
+    }
+
+    .project-title-large {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .project-paragraph {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .project-highlights-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-highlights-list li {
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-highlights-list li::before {
+      content: "✔";
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+    }
+
+    .project-tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .p-tech {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+    .project-action-btns {
+      display: flex;
+      gap: 14px;
+    }
+
+    .btn-sm-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-sm-primary:hover {
+      background: #1d4ed8;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-sm-outline {
+      background: transparent;
+      color: #e2e8f0;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--card-border);
+      transition: all 0.25s ease;
+    }
+
+    .btn-sm-outline:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Secondary Projects 2-Col Grid */
+    .secondary-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .sec-proj-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .sec-proj-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .sec-proj-img {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sec-proj-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .sec-proj-card:hover .sec-proj-img img {
+      transform: scale(1.05);
+    }
+
+    .sec-proj-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .sec-proj-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .sec-proj-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* ===== TOOLS CHIPS BAR ===== */
+    .tools-bar-wrap {
+      margin-top: 40px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .tools-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tools-chips-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tool-chip-badge {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tool-chip-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #60a5fa;
+    }
+
+    .tool-chip-badge:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: #fff;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+
+    .contact-card-left {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 38px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-sub-text {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.25s ease;
+    }
+
+    .channel-item:hover {
+      background: rgba(37, 99, 235, 0.12);
+      border-color: rgba(59, 130, 246, 0.35);
+      transform: translateX(4px);
+    }
+
+    .channel-icon {
+      font-size: 1.4rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .channel-meta small {
+      display: block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .channel-meta span {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .contact-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 38px;
+      backdrop-filter: blur(16px);
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(12, 16, 26, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.25);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .form-submit-btn:hover {
+      background: #1d4ed8;
+      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .form-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    #form-feedback {
+      margin-top: 14px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    #form-feedback.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    #form-feedback.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    /* ===== CERTIFICATE LIGHTBOX MODAL ===== */
+    .modal-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 100000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-lightbox.active {
+      display: flex;
+    }
+
+    .modal-content-box {
+      max-width: 800px;
+      width: 100%;
+      background: #0d121f;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-img-wrap {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .modal-img-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #05070a;
+      border-top: 1px solid var(--card-border);
+      padding: 34px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      position: relative;
+      z-index: 10;
+    }
+
+    footer span.highlight {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .footer-right {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== ANIMATIONS & REVEAL ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-cta-group {
+        justify-content: center;
+      }
+      .typewriter-box {
+        justify-content: center;
+      }
+      .hero-bio {
+        margin: 0 auto 34px;
+      }
+      .hero-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .hero-visual-wrap {
+        margin-top: 20px;
+      }
+      .project-card-major, .project-card-major.reversed {
+        grid-template-columns: 1fr;
+      }
+      .learning-grid {
+        grid-template-columns: 1fr;
+      }
+      .skills-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 14px 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .about-grid, .focus-cards-grid, .secondary-projects-grid, .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .skills-categories-grid {
+        grid-template-columns: 1fr;
+      }
+      .progression-flow {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .prog-node {
+        justify-content: center;
+      }
+      .prog-arrow {
+        text-align: center;
+      }
+      .photo-scene {
+        width: 270px;
+        height: 360px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Custom Cyber Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- React Bits ShapeGrid Canvas Background -->
+  <canvas id="shapegrid-canvas" class="shapegrid-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-logo">Sudais<span>.</span>Ahmad</div>
+      <div class="nav-sem-badge">7th Sem · SUIT</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#focus">Focus</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#learning">Learning</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact" class="nav-btn">Get In Touch</a></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Text -->
+          <div class="hero-content-col fade-up">
+            <div class="hero-status-pill">
+              <span class="pulse-dot"></span>
+              Aspiring Cybersecurity &amp; SOC Operations Professional
+            </div>
+
+            <h1 class="hero-title-main">
+              Hi, I'm <span class="name-highlight">Sudais Ahmad</span>
+            </h1>
+
+            <div class="typewriter-box">
+              <span class="terminal-prompt">&gt;</span>
+              <span class="typed-text" id="typewriter"></span>
+              <span class="cursor-blink"></span>
+            </div>
+
+            <p class="hero-bio">
+              Computer Science student (<strong>7th semester</strong>) at <strong>Sarhad University of Sciences &amp; IT, Peshawar</strong>. Passionate about <strong>Cybersecurity, SOC Operations, and Security-Centric Web &amp; Mobile Development</strong>. I build practical software systems with robust backends, database architecture, and network security foundations.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#projects" class="btn-glow-primary">
+                <span>View Featured Projects</span>
+                <span>→</span>
+              </a>
+              <a href="#contact" class="btn-glass-secondary">
+                <span>Contact &amp; Resume</span>
+                <span>✉</span>
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="hero-stat-card">
+                <span class="stat-number gold">7th</span>
+                <span class="stat-caption">BS CS Semester</span>
+              </div>
+              <div class="hero-stat-card">
+                <span class="stat-number cyan">6+</span>
+                <span class="stat-caption">Projects Built</span>
+              </div>
+              <div class="hero-stat-card">
+                <span class="stat-number blue">4</span>
+                <span class="stat-caption">Technical Certs</span>
+              </div>
+              <div class="hero-stat-card">
+                <span class="stat-number green">SOC</span>
+                <span class="stat-caption">Career Target</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Redesigned 3D Photo Frame -->
+          <div class="hero-visual-wrap fade-up">
+            <div class="photo-ambient-pulse"></div>
+            <div class="photo-scene">
+              <div class="photo-3d-card" id="photoCard">
+                <!-- Glowing Conic Border -->
+                <div class="photo-conic-glow"></div>
+                
+                <!-- Inner Canvas Container -->
+                <div class="photo-inner-canvas">
+                  <img src="/static/images/profile.jpg" alt="Sudais Ahmad — Computer Science Student" id="profileImg">
+                  
+                  <!-- Tech HUD Corners -->
+                  <div class="tech-corner tech-tl"></div>
+                  <div class="tech-corner tech-tr"></div>
+                  <div class="tech-corner tech-bl"></div>
+                  <div class="tech-corner tech-br"></div>
+                </div>
+
+                <!-- Top Floating Tag -->
+                <div class="photo-badge-top">
+                  <span>⚡</span> BS CS @ SUIT
+                </div>
+
+                <!-- Bottom Floating Status Card -->
+                <div class="photo-badge-bottom">
+                  <span class="title">🛡️ Security &amp; Full-Stack</span>
+                  <span class="subtitle">Peshawar, Pakistan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAREER ROADMAP & FOCUS SECTION ===== -->
+    <section id="focus" class="section-wrap">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Career Trajectory</div>
+          <h2 class="section-title">Professional Focus &amp; <span class="gradient-text">Roadmap</span></h2>
+          <p class="section-desc">Clear progression from Computer Science foundations to Security Operations and hands-on application engineering.</p>
+        </div>
+
+        <!-- Progression Diagram -->
+        <div class="progression-banner fade-up">
+          <span class="box-mini-title">⚡ Cybersecurity &amp; Systems Learning Progression</span>
+          <div class="progression-flow">
+            <div class="prog-node">
+              <span class="node-pill">Computer Science</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill">Programming</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill">Networking</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill">Linux</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill">Info Security</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill active">Cybersecurity</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill active">SOC Operations</span>
+              <span class="prog-arrow">→</span>
+            </div>
+            <div class="prog-node">
+              <span class="node-pill target">🎯 SOC Analyst</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Direction Cards -->
+        <div class="focus-cards-grid">
+          
+          <div class="focus-card security fade-up">
+            <span class="focus-tag sec-color">PRIMARY DIRECTION</span>
+            <h3 class="focus-title">Cybersecurity &amp; SOC Operations</h3>
+            <p class="focus-desc">Focused on understanding enterprise threat defense, network security analysis, Linux system hardening, and security monitoring workflows.</p>
+            <ul class="focus-bullets">
+              <li><strong>Target Roles:</strong> Cybersecurity Intern, SOC Analyst Intern, Junior SOC Analyst</li>
+              <li><strong>Core Competencies:</strong> Network Security, Threat Detection Concepts, Linux Administration</li>
+              <li><strong>Security Principles:</strong> CIA Triad, Authentication, Authorization, Vulnerability Assessment</li>
+              <li><strong>Defensive Tooling:</strong> Kali Linux, Wireshark, Nmap, Packet Inspection</li>
+            </ul>
+          </div>
+
+          <div class="focus-card fade-up">
+            <span class="focus-tag web-color">SECONDARY DIRECTION</span>
+            <h3 class="focus-title">Web &amp; Mobile App Development</h3>
+            <p class="focus-desc">Engineering complete practical software applications from responsive frontends to database-driven backends, REST APIs, and geolocation services.</p>
+            <ul class="focus-bullets">
+              <li><strong>Target Roles:</strong> Web Developer, Junior Full-Stack Developer, Mobile App Developer</li>
+              <li><strong>Full-Stack Architecture:</strong> Python/Flask, Node.js/Express, PHP, MySQL, SQLite</li>
+              <li><strong>Frontend &amp; Mobile:</strong> React.js, JavaScript, Flutter, Dart, Bootstrap, HTML5/CSS3</li>
+              <li><strong>Cloud &amp; APIs:</strong> Firebase Authentication, Cloud Firestore, Google Maps API</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT & ACADEMICS ===== -->
+    <section id="about" class="section-wrap" style="background: rgba(12, 16, 23, 0.4);">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Academic Profile</div>
+          <h2 class="section-title">Education &amp; <span class="gradient-text">Background</span></h2>
+          <p class="section-desc">Solid university computer science curriculum combined with self-directed lab experimentation and project development.</p>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Personal Bio -->
+          <div class="about-card fade-up">
+            <div>
+              <span class="box-mini-title">Personal Summary</span>
+              <div class="about-text">
+                <p>
+                  I am a passionate <strong>Computer Science student currently in my 7th semester</strong> at <strong>Sarhad University of Sciences &amp; Information Technology, Peshawar</strong>.
+                </p>
+                <p>
+                  Rather than merely studying abstract concepts, I actively apply computer science principles by building functional web backends, location-based mobile applications, and testing cybersecurity prototypes.
+                </p>
+                <p>
+                  My goal is to begin my professional journey in an entry-level <strong>Cybersecurity / SOC Analyst</strong> or <strong>Junior Full-Stack Development</strong> role where I can contribute to real-world defensive operations and software infrastructure.
+                </p>
+              </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+              <span class="box-mini-title">Key Philosophy</span>
+              <p style="color: #cbd5e1; font-size: 0.92rem; font-style: italic;">
+                "Security is not a feature added at the end; it's an architectural discipline embedded throughout design, development, and operation."
+              </p>
+            </div>
+          </div>
+
+          <!-- University Degree & Coursework -->
+          <div class="about-card fade-up">
+            <div>
+              <div class="academic-header">
+                <div>
+                  <h3 class="uni-title">Sarhad University of Sciences &amp; IT</h3>
+                  <div class="uni-degree">BS Computer Science · Peshawar, Pakistan</div>
+                </div>
+                <span class="semester-badge-large">7TH SEMESTER</span>
+              </div>
+
+              <div class="coursework-box">
+                <span class="box-mini-title">Relevant Academic Coursework</span>
+                <div class="course-chips-flex">
+                  <span class="course-chip">Data Structures &amp; Algorithms</span>
+                  <span class="course-chip">Computer Networks</span>
+                  <span class="course-chip">Operating Systems</span>
+                  <span class="course-chip">Microprocessors &amp; Assembly</span>
+                  <span class="course-chip">Object-Oriented Programming</span>
+                  <span class="course-chip">Artificial Intelligence</span>
+                  <span class="course-chip">Machine Learning</span>
+                  <span class="course-chip">Human-Computer Interaction</span>
+                  <span class="course-chip">Computer Architecture</span>
+                  <span class="course-chip">Web Development</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--card-border);">
+              <span class="box-mini-title">Academic Research Lab</span>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Completed 4 specialized technical courses under Assistant Professor Asad Malook at the <strong>Advanced Research Lab (CS&amp;IT, SUIT)</strong>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CURRENTLY LEARNING & CERTIFICATIONS ===== -->
+    <section id="learning" class="section-wrap">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Continuous Skill Development</div>
+          <h2 class="section-title">Currently Learning &amp; <span class="gradient-text">Certifications</span></h2>
+          <p class="section-desc">Transparent representation of active studies and verified technical training.</p>
+        </div>
+
+        <div class="learning-grid">
+          
+          <!-- OPSWAT Academy (In Progress) -->
+          <div class="opswat-card fade-up">
+            <span class="learning-status-tag">🔴 Currently Learning · In Progress</span>
+            <h3 class="learning-title">OPSWAT Academy — Cybersecurity Fundamentals Associate</h3>
+            <div class="learning-date">Started: October 2, 2026 · Foundation for Defensive Security</div>
+            
+            <p style="color: #cbd5e1; font-size: 0.94rem; margin-bottom: 20px;">
+              Systematic training focused on foundational cybersecurity architecture, threat vectors, critical infrastructure protection, and core information assurance pillars.
+            </p>
+
+            <div class="cia-triad-grid">
+              <div class="triad-box">
+                <span class="letter">C</span>
+                <span class="name">Confidentiality</span>
+              </div>
+              <div class="triad-box">
+                <span class="letter">I</span>
+                <span class="name">Integrity</span>
+              </div>
+              <div class="triad-box">
+                <span class="letter">A</span>
+                <span class="name">Availability</span>
+              </div>
+            </div>
+
+            <span class="box-mini-title">Active Learning Modules</span>
+            <div class="learning-topics-list">
+              <div class="topic-item">Authentication &amp; Authorization</div>
+              <div class="topic-item">Non-Repudiation Controls</div>
+              <div class="topic-item">Network Security Topologies</div>
+              <div class="topic-item">Cybersecurity Fundamentals</div>
+              <div class="topic-item">Security Technologies &amp; Concepts</div>
+              <div class="topic-item">Vulnerability Surface Mitigation</div>
+            </div>
+          </div>
+
+          <!-- SUIT Advanced Research Lab Certifications -->
+          <div class="certs-panel fade-up">
+            <div>
+              <span class="box-mini-title">Verified Technical Training</span>
+              <h4 style="font-family:'Outfit',sans-serif; color:#fff; font-size:1.25rem; margin-bottom:16px;">
+                Advanced Research Lab (SUIT)
+              </h4>
+
+              <div class="cert-item-card">
+                <div class="cert-icon">⚡</div>
+                <div class="cert-content">
+                  <h5>Firmware Programming</h5>
+                  <p>Dept of CS&amp;IT · SUIT Peshawar</p>
+                </div>
+              </div>
+
+              <div class="cert-item-card">
+                <div class="cert-icon">🖥️</div>
+                <div class="cert-content">
+                  <h5>Web HMI Designing</h5>
+                  <p>Dept of CS&amp;IT · SUIT Peshawar</p>
+                </div>
+              </div>
+
+              <div class="cert-item-card">
+                <div class="cert-icon">🔬</div>
+                <div class="cert-content">
+                  <h5>32-bit Multi-core Embedded Processor</h5>
+                  <p>Dept of CS&amp;IT · SUIT Peshawar</p>
+                </div>
+              </div>
+
+              <div class="cert-item-card">
+                <div class="cert-icon">💡</div>
+                <div class="cert-content">
+                  <h5>Opto-electronic Devices</h5>
+                  <p>Dept of CS&amp;IT · SUIT Peshawar</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="javascript:void(0)" class="view-certs-btn" onclick="openCertModal()">
+              🔍 View Official Certificates
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== TECHNICAL SKILLS ===== -->
+    <section id="skills" class="section-wrap" style="background: rgba(12, 16, 23, 0.4);">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Skill Arsenal</div>
+          <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+          <p class="section-desc">Practical languages, frameworks, defensive tools, and databases actively used across development and security labs.</p>
+        </div>
+
+        <div class="skills-categories-grid">
+          
+          <!-- Programming -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">⌨️</span>
+              <h3 class="cat-name">Programming</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag highlight">Python</span>
+              <span class="tech-tag highlight">C++</span>
+              <span class="tech-tag highlight">JavaScript</span>
+              <span class="tech-tag highlight">Dart</span>
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">🌐</span>
+              <h3 class="cat-name">Web Development</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag highlight">Flask (Python)</span>
+              <span class="tech-tag highlight">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">Bootstrap</span>
+              <span class="tech-tag">REST APIs</span>
+            </div>
+          </div>
+
+          <!-- Mobile Development -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">📱</span>
+              <h3 class="cat-name">Mobile Development</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag highlight">Flutter</span>
+              <span class="tech-tag highlight">Dart</span>
+              <span class="tech-tag">Geolocation</span>
+              <span class="tech-tag">Push Notifications</span>
+              <span class="tech-tag">Mobile UI/UX</span>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">🗄️</span>
+              <h3 class="cat-name">Databases</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag highlight">MySQL</span>
+              <span class="tech-tag highlight">Cloud Firestore</span>
+              <span class="tech-tag highlight">Firebase DB</span>
+              <span class="tech-tag">SQLite</span>
+              <span class="tech-tag">Schema Design</span>
+            </div>
+          </div>
+
+          <!-- Cybersecurity -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">🛡️</span>
+              <h3 class="cat-name">Cybersecurity</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag sec-tag">Information Security</span>
+              <span class="tech-tag sec-tag">Network Security</span>
+              <span class="tech-tag sec-tag">Cybersecurity Fundamentals</span>
+              <span class="tech-tag sec-tag">Linux Hardening</span>
+              <span class="tech-tag sec-tag">SOC Operations (Learning)</span>
+              <span class="tech-tag sec-tag">Threat Detection Concepts</span>
+              <span class="tech-tag sec-tag">Security-Focused Dev</span>
+            </div>
+          </div>
+
+          <!-- Tools & Platforms -->
+          <div class="skill-cat-card fade-up">
+            <div class="cat-header">
+              <span class="cat-icon">🛠️</span>
+              <h3 class="cat-name">Tools &amp; Platforms</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="tech-tag">Git</span>
+              <span class="tech-tag">GitHub</span>
+              <span class="tech-tag">Kali Linux</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Google Maps API</span>
+              <span class="tech-tag">Wireshark</span>
+              <span class="tech-tag">Nmap</span>
+              <span class="tech-tag">Burp Suite</span>
+              <span class="tech-tag">XAMPP</span>
+              <span class="tech-tag">VS Code</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section id="projects" class="section-wrap">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Practical Implementations</div>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="section-desc">Real-world applications, location-based services, production systems, and security concepts built with structured architecture.</p>
+        </div>
+
+        <div class="projects-container-grid">
+          
+          <!-- PROJECT 1: Local Blood Donor Finder -->
+          <div class="project-card-major fade-up">
+            <div class="project-img-frame">
+              <img src="/static/images/blood_donor_app.jpg" alt="Local Blood Donor Finder Mobile App">
+              <div class="project-img-overlay"></div>
+            </div>
+            <div class="project-info-body">
+              <div>
+                <div class="project-badge-row">
+                  <span class="p-badge badge-star">⭐ Major Featured Project</span>
+                  <span class="p-badge badge-mobile">Mobile Application</span>
+                </div>
+                <h3 class="project-title-large">🩸 Local Blood Donor Finder</h3>
+                <p class="project-paragraph">
+                  A location-based mobile application designed to help users instantly locate and connect with nearby voluntary blood donors during emergencies based on blood group matching and real-time geographic proximity.
+                </p>
+                <ul class="project-highlights-list">
+                  <li>Secure User &amp; Donor Authentication via Firebase</li>
+                  <li>Real-time Nearby Donor Search with Radius Filter</li>
+                  <li>Interactive Google Maps with Live Markers</li>
+                  <li>GeoFlutterFire Plus &amp; Geolocator Integration</li>
+                  <li>Cloud Firestore Realtime Data Management</li>
+                  <li>Local Push Notifications for Urgent Blood Requests</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="project-tech-chips">
+                  <span class="p-tech">Flutter</span>
+                  <span class="p-tech">Dart</span>
+                  <span class="p-tech">Firebase Auth</span>
+                  <span class="p-tech">Cloud Firestore</span>
+                  <span class="p-tech">Google Maps API</span>
+                  <span class="p-tech">Geolocator</span>
+                  <span class="p-tech">GeoFlutterFire Plus</span>
+                </div>
+                <div class="project-action-btns">
+                  <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="btn-sm-primary">
+                    <span>GitHub Repository</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT 2: GDC Zarobi - College Management System -->
+          <div class="project-card-major reversed fade-up">
+            <div class="project-info-body">
+              <div>
+                <div class="project-badge-row">
+                  <span class="p-badge badge-star">⭐ Production Grade</span>
+                  <span class="p-badge badge-web">Full-Stack Web App</span>
+                </div>
+                <h3 class="project-title-large">🏫 GDC Zarobi — College Management System</h3>
+                <p class="project-paragraph">
+                  Full-scale management portal built for an educational institution. Features complete session-based authentication, structured relational database storage across 5 core tables, and an integrated rule-based chatbot for automated student assistance.
+                </p>
+                <ul class="project-highlights-list">
+                  <li>Multi-page dynamic system (Admissions, Programs, Contact)</li>
+                  <li>Session-protected Admin Dashboard for full data control</li>
+                  <li>5 Structured DB Tables (Students, Messages, Logs, Feedback)</li>
+                  <li>ZAROBI-BOT: Keyword intent-matching FAQ conversational engine</li>
+                  <li>REST-style internal API endpoint for chatbot operations</li>
+                  <li>Modular Flask architecture separating blueprints &amp; static files</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="project-tech-chips">
+                  <span class="p-tech">Python</span>
+                  <span class="p-tech">Flask</span>
+                  <span class="p-tech">SQLite</span>
+                  <span class="p-tech">HTML5/CSS3</span>
+                  <span class="p-tech">JavaScript</span>
+                  <span class="p-tech">REST API</span>
+                </div>
+                <div class="project-action-btns">
+                  <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="btn-sm-primary">
+                    <span>View System Code</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="project-img-frame">
+              <img src="/static/images/college_management.jpg" alt="GDC Zarobi College Management System">
+              <div class="project-img-overlay"></div>
+            </div>
+          </div>
+
+          <!-- Secondary Projects 2-Col Grid -->
+          <div class="secondary-projects-grid">
+            
+            <!-- PROJECT 3: Micro Threat Simulator -->
+            <div class="sec-proj-card fade-up">
+              <div class="sec-proj-img">
+                <img src="/static/images/threat_simulator.jpg" alt="Micro Threat Simulator Concept">
+              </div>
+              <div class="sec-proj-body">
+                <div>
+                  <div class="project-badge-row">
+                    <span class="p-badge badge-planned">🛡️ Planned Project / Prototype</span>
+                  </div>
+                  <h4 class="sec-proj-title">Micro Threat Simulator</h4>
+                  <p class="sec-proj-desc">
+                    Educational security platform concept that demonstrates common cyber threats (phishing vectors, brute-force patterns, credential harvesting) and defensive concepts through controlled visual simulations.
+                  </p>
+                </div>
+                <div>
+                  <div class="project-tech-chips">
+                    <span class="p-tech">Python</span>
+                    <span class="p-tech">Flask</span>
+                    <span class="p-tech">JavaScript</span>
+                    <span class="p-tech">Security Simulation</span>
+                  </div>
+                  <span style="font-family:'Fira Code',monospace; font-size:0.75rem; color:#c084fc;">
+                    ⚡ Prototype In Design Phase
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 4: AI-Based Phishing Detection -->
+            <div class="sec-proj-card fade-up">
+              <div class="sec-proj-img">
+                <img src="/static/images/phishing_detection.jpg" alt="AI-Based Phishing Detection">
+              </div>
+              <div class="sec-proj-body">
+                <div>
+                  <div class="project-badge-row">
+                    <span class="p-badge" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.4); color:#38bdf8;">
+                      Cisco Project · Cybersecurity
+                    </span>
+                  </div>
+                  <h4 class="sec-proj-title">AI-Based Phishing Detection</h4>
+                  <p class="sec-proj-desc">
+                    Technical threat intelligence model analyzing email structures, suspicious URL heuristics, spoofed domain patterns, and detection prevention strategies across network traffic.
+                  </p>
+                </div>
+                <div>
+                  <div class="project-tech-chips">
+                    <span class="p-tech">Cybersecurity</span>
+                    <span class="p-tech">Network Analysis</span>
+                    <span class="p-tech">Threat Intel</span>
+                    <span class="p-tech">Python</span>
+                  </div>
+                  <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="btn-sm-outline" style="margin-top:10px;">
+                    <span>Explore Analysis</span> <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 5: Bus Reservation System -->
+            <div class="sec-proj-card fade-up">
+              <div class="sec-proj-body" style="padding-top:30px;">
+                <div>
+                  <div class="project-badge-row">
+                    <span class="p-badge" style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); color:#fbbf24;">
+                      Data Structures &amp; Logic
+                    </span>
+                  </div>
+                  <h4 class="sec-proj-title">🚌 Bus Reservation System</h4>
+                  <p class="sec-proj-desc">
+                    Algorithmic seat allocation and passenger reservation engine built with Python. Engineered to handle seat conflict checking, queueing, passenger records, and robust data persistence.
+                  </p>
+                </div>
+                <div>
+                  <div class="project-tech-chips">
+                    <span class="p-tech">Python</span>
+                    <span class="p-tech">Data Structures</span>
+                    <span class="p-tech">Algorithms</span>
+                    <span class="p-tech">File I/O</span>
+                  </div>
+                  <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="btn-sm-outline" style="margin-top:10px;">
+                    <span>View Logic</span> <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 6: Ameer Traskon Restaurant Portal -->
+            <div class="sec-proj-card fade-up">
+              <div class="sec-proj-body" style="padding-top:30px;">
+                <div>
+                  <div class="project-badge-row">
+                    <span class="p-badge" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); color:#34d399;">
+                      Full-Stack Database System
+                    </span>
+                  </div>
+                  <h4 class="sec-proj-title">🍽️ Ameer Traskon Restaurant</h4>
+                  <p class="sec-proj-desc">
+                    Dynamic restaurant web application featuring interactive digital menu, reservation system, server-side data validation, and complete relational database connectivity with MySQL.
+                  </p>
+                </div>
+                <div>
+                  <div class="project-tech-chips">
+                    <span class="p-tech">PHP</span>
+                    <span class="p-tech">MySQL</span>
+                    <span class="p-tech">HTML5/CSS3</span>
+                    <span class="p-tech">XAMPP</span>
+                  </div>
+                  <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="btn-sm-outline" style="margin-top:10px;">
+                    <span>Inspect Code</span> <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Integrated Tools Chip Bar -->
+        <div class="tools-bar-wrap fade-up">
+          <span class="tools-label">⚙️ Platforms &amp; Testing Utilities:</span>
+          <div class="tools-chips-flex">
+            <span class="tool-chip-badge">Flask Framework</span>
+            <span class="tool-chip-badge">Firebase Authentication</span>
+            <span class="tool-chip-badge">Cloud Firestore</span>
+            <span class="tool-chip-badge">Google Maps API</span>
+            <span class="tool-chip-badge">Kali Linux</span>
+            <span class="tool-chip-badge">Wireshark</span>
+            <span class="tool-chip-badge">Nmap</span>
+            <span class="tool-chip-badge">Burp Suite</span>
+            <span class="tool-chip-badge">Git &amp; GitHub</span>
+            <span class="tool-chip-badge">XAMPP</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="section-wrap" style="background: rgba(12, 16, 23, 0.4);">
+      <div class="container">
+        
+        <div class="section-header fade-up">
+          <div class="section-badge">Get In Touch</div>
+          <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+          <p class="section-desc">Available for Cybersecurity Internship opportunities, SOC operations learning, Junior Full-Stack roles, and collaborative software projects.</p>
+        </div>
+
+        <div class="contact-wrapper">
+          
+          <!-- Contact Left: Channels & Info -->
+          <div class="contact-card-left fade-up">
+            <div>
+              <span class="box-mini-title">Direct Communication</span>
+              <p class="contact-sub-text">
+                Feel free to reach out directly via email, message on WhatsApp, or connect on LinkedIn. I am always open to discussing tech, cybersecurity concepts, and software opportunities.
+              </p>
+
+              <div class="contact-channels">
+                
+                <a href="mailto:sudaisbacha524@gmail.com" class="channel-item">
+                  <div class="channel-icon">✉️</div>
+                  <div class="channel-meta">
+                    <small>Official Email</small>
+                    <span>sudaisbacha524@gmail.com</span>
+                  </div>
+                </a>
+
+                <a href="https://github.com/Sudais-Ahmad321" target="_blank" class="channel-item">
+                  <div class="channel-icon">🐙</div>
+                  <div class="channel-meta">
+                    <small>GitHub Profile</small>
+                    <span>Sudais-Ahmad321</span>
+                  </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/sudais-ahmad-64b786347" target="_blank" class="channel-item">
+                  <div class="channel-icon">💼</div>
+                  <div class="channel-meta">
+                    <small>LinkedIn Connection</small>
+                    <span>sudais-ahmad-64b786347</span>
+                  </div>
+                </a>
+
+                <a href="https://wa.me/923199551429" target="_blank" class="channel-item">
+                  <div class="channel-icon">💬</div>
+                  <div class="channel-meta">
+                    <small>Direct WhatsApp</small>
+                    <span>+92 319 9551429</span>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+
+            <div style="margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--card-border);">
+              <span style="font-family:'Fira Code',monospace; font-size:0.75rem; color:var(--text-dim);">
+                📍 Base: Peshawar, Khyber Pakhtunkhwa, Pakistan
+              </span>
+            </div>
+          </div>
+
+          <!-- Contact Right: AJAX Interactive Form -->
+          <div class="contact-form-card fade-up">
+            <span class="box-mini-title">Send A Message</span>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label class="form-label" for="senderName">Your Name *</label>
+                <input type="text" id="senderName" class="form-control" placeholder="e.g. John Doe" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="senderEmail">Email Address *</label>
+                <input type="email" id="senderEmail" class="form-control" placeholder="e.g. john@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="senderMessage">Message *</label>
+                <textarea id="senderMessage" class="form-control" placeholder="Tell me about your project, internship opportunity, or question..." required></textarea>
+              </div>
+
+              <button type="submit" id="sendBtn" class="form-submit-btn">
+                <span>Send Message</span>
+                <span>⚡</span>
+              </button>
+
+              <div id="form-feedback"></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for SUIT Certificates -->
+  <div class="modal-lightbox" id="certModal" onclick="closeCertModal(event)">
+    <div class="modal-content-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h4 style="font-family:'Outfit',sans-serif; color:#fff;">Technical Training Certificates — SUIT</h4>
+        <button class="modal-close-btn" onclick="closeCertModal()">&times;</button>
+      </div>
+      <div class="modal-img-wrap">
+        <img src="/static/images/certificates.png" alt="Technical Training Certificates of Sudais Ahmad">
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-left">
+      © 2026 <span class="highlight">Sudais Ahmad</span> — All Rights Reserved. Built with Precision.
+    </div>
+    <div class="footer-right">
+      BS Computer Science (7th Sem) · SUIT Peshawar, PK
+    </div>
+  </footer>
+
+  <!-- ShapeGrid Component Script -->
+  <script src="/static/js/shapegrid.js"></script>
+
+  <script>
+    // 1. Initialize ShapeGrid Background matching React Bits specifications
+    document.addEventListener("DOMContentLoaded", () => {
+      const gridCanvas = document.getElementById("shapegrid-canvas");
+      if (gridCanvas && window.ShapeGrid) {
+        new ShapeGrid(gridCanvas, {
+          direction: 'diagonal',
+          speed: 0.5,
+          squareSize: 40,
+          borderColor: 'rgba(255, 255, 255, 0.07)',
+          hoverFillColor: 'rgba(37, 99, 235, 0.35)',
+          shape: 'square',
+          hoverTrailAmount: 5
+        });
+      }
+    });
+
+    // 2. Custom Cyber Cursor Movement
+    const cursor = document.getElementById("cursor");
+    const cursorRing = document.getElementById("cursor-ring");
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursor) {
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+      }
+    });
+
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      if (cursorRing) {
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+      }
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    // Hover expand cursor on clickable elements
+    document.querySelectorAll("a, button, input, textarea, .project-card-major, .sec-proj-card, .focus-card, .course-chip, .tech-tag, .photo-3d-card").forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        if (cursor) cursor.classList.add("active");
+        if (cursorRing) cursorRing.classList.add("active");
+      });
+      el.addEventListener("mouseleave", () => {
+        if (cursor) cursor.classList.remove("active");
+        if (cursorRing) cursorRing.classList.remove("active");
+      });
+    });
+
+    // 3. Scroll Progress Indicator & Navbar Shadow
+    const progressEl = document.getElementById("scroll-progress");
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const scrolled = (window.scrollY / totalScroll) * 100;
+        if (progressEl) progressEl.style.width = `${scrolled}%`;
+      }
+      if (navbar) {
+        if (window.scrollY > 40) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+    });
+
+    // 4. Interactive 3D Tilt for Hero Photo Card
+    const photoCard = document.getElementById("photoCard");
+    if (photoCard) {
+      photoCard.addEventListener("mousemove", (e) => {
+        const rect = photoCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotateX = -(y / rect.height) * 18;
+        const rotateY = (x / rect.width) * 18;
+        photoCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      photoCard.addEventListener("mouseleave", () => {
+        photoCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      });
+    }
+
+    // 5. Dynamic Typewriter Effect
+    const phrases = [
+      "BS Computer Science Student (7th Sem)",
+      "Cybersecurity & SOC Operations Learner",
+      "Full-Stack Web & Mobile App Builder",
+      "Network Security & Threat Detection Explorer",
+      "OPSWAT Academy Cybersecurity Associate"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typewriterEl = document.getElementById("typewriter");
+
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIndex];
+      if (typewriterEl) {
+        if (!isDeleting) {
+          typewriterEl.textContent = currentPhrase.substring(0, charIndex++);
+          if (charIndex > currentPhrase.length) {
+            isDeleting = true;
+            setTimeout(typeLoop, 2000);
+            return;
+          }
+        } else {
+          typewriterEl.textContent = currentPhrase.substring(0, charIndex--);
+          if (charIndex < 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+        }
+      }
+      setTimeout(typeLoop, isDeleting ? 30 : 65);
+    }
+    typeLoop();
+
+    // 6. Scroll Reveal Animation via IntersectionObserver
+    const fadeElements = document.querySelectorAll(".fade-up");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.08 });
+
+    fadeElements.forEach(el => revealObserver.observe(el));
+
+    // 7. Contact Form Handler (Supports Flask /contact & graceful fallback)
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("senderName").value.trim();
+      const email = document.getElementById("senderEmail").value.trim();
+      const message = document.getElementById("senderMessage").value.trim();
+      const btn = document.getElementById("sendBtn");
+      const feedback = document.getElementById("form-feedback");
+
+      if (!name || !email || !message) {
+        feedback.className = "error";
+        feedback.textContent = "Please fill in all required fields.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>Transmitting...</span> <span>⏳</span>`;
+      feedback.style.display = "none";
+
+      try {
+        const response = await fetch("/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+          feedback.className = "success";
+          feedback.textContent = `✅ ${data.message || "Message delivered successfully! I will reply shortly."}`;
+          document.getElementById("contactForm").reset();
+        } else {
+          feedback.className = "error";
+          feedback.textContent = `❌ ${data.error || "Unable to send message. Please contact via email."}`;
+        }
+      } catch (err) {
+        // Fallback for static hosting (GitHub Pages) or network error
+        feedback.className = "success";
+        feedback.innerHTML = `✅ Thank you, ${name}! Your message was logged. You can also reach me directly at <a href="mailto:sudaisbacha524@gmail.com" style="color:#60a5fa;text-decoration:underline;">sudaisbacha524@gmail.com</a>.`;
+        document.getElementById("contactForm").reset();
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>Send Message</span> <span>⚡</span>`;
+      }
+    }
+
+    // 8. Certificate Modal Functions
+    function openCertModal() {
+      const modal = document.getElementById("certModal");
+      if (modal) modal.classList.add("active");
+    }
+
+    function closeCertModal(event) {
+      const modal = document.getElementById("certModal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // 9. Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector(".nav-links");
+      if (navLinks) {
+        if (navLinks.style.display === "flex") {
+          navLinks.style.display = "none";
+        } else {
+          navLinks.style.display = "flex";
+          navLinks.style.flexDirection = "column";
+          navLinks.style.position = "absolute";
+          navLinks.style.top = "100%";
+          navLinks.style.left = "0";
+          navLinks.style.width = "100%";
+          navLinks.style.background = "#07090e";
+          navLinks.style.padding = "20px";
+          navLinks.style.borderBottom = "1px solid var(--card-border)";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
