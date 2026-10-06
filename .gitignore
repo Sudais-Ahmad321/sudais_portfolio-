@@ -18,3 +18,9 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local database
+messages.db
+
+# Temporary/generated files
+mnt/
